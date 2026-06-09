@@ -1,0 +1,46 @@
+{
+  "name": "@aeondave/opencode-dotenv",
+  "version": "0.1.0",
+  "description": "Load a .env file next to your OpenCode config into the process and substitute {env:VAR} / ${VAR} placeholders across config files. Cross-platform, zero runtime dependencies.",
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "dotenv",
+    "env",
+    "environment-variables",
+    "config"
+  ],
+  "homepage": "https://github.com/AeonDave/opencode-dot-env#readme",
+  "bugs": "https://github.com/AeonDave/opencode-dot-env/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AeonDave/opencode-dot-env.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "main": "src/plugin/dotenv.ts",
+  "exports": {
+    ".": "./src/plugin/dotenv.ts"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@opencode-ai/plugin": "*"
+  },
+  "peerDependenciesMeta": {
+    "@opencode-ai/plugin": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@opencode-ai/plugin": "latest",
+    "@types/bun": "latest",
+    "typescript": "latest"
+  }
+}
