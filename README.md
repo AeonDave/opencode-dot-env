@@ -1,4 +1,4 @@
-# opencode-dotenv
+# opencode-dot-env
 
 > Load a `.env` next to your OpenCode config and resolve `{env:VAR}` placeholders — no shell wrapper, no profile alias.
 
@@ -12,7 +12,7 @@ OpenCode resolves `{env:VAR}` from the **process environment** at startup. Witho
 
 This plugin removes the wrapper: drop a `.env` next to `opencode.json` and the variables are loaded for you, on every OS, every launch.
 
-- **One `.env`, everywhere** — Keep `TAVILY_API_KEY`, `HTB_TOKEN`, etc. in a single gitignored file beside your config.
+- **One `.env`, everywhere** — Keep values like `API_KEY`, `ACCESS_TOKEN`, and other secrets in a single gitignored file beside your config.
 - **Placeholders just work** — `{env:VAR}` and `${VAR}` in config files resolve from the loaded `.env`.
 - **Shells inherit it too** — Loaded variables are injected into the `bash` tool and terminal sessions.
 
@@ -42,7 +42,7 @@ An optional `OPENCODE_DOTENV_PATH` points at a specific `.env` file, which is lo
 ```bash
 # comments and blank lines are ignored
 export FOO=bar
-TAVILY_API_KEY="tvly-abc123"
+API_KEY="example-key"
 QUOTED='single quoted'
 MULTILINE="line1\nline2"   # \n \t \r \\ \" unescaped inside double quotes
 ```
@@ -98,21 +98,18 @@ Run from a local checkout — useful before publishing or while hacking on the p
 
    ```bash
    # ~/.config/opencode/.env
-   TAVILY_API_KEY=tvly-your-key
-   HTB_TOKEN=your-token
+   API_KEY=your-api-key
+   ACCESS_TOKEN=your-access-token
    ```
 
 2. Reference the variables in your config as usual:
 
    ```jsonc
-   // ~/.config/opencode/opencode.json
+   // Example excerpt
    {
-     "mcp": {
-       "tavily": {
-         "type": "local",
-         "command": ["npx", "-y", "tavily-mcp@latest"],
-         "environment": { "TAVILY_API_KEY": "{env:TAVILY_API_KEY}" }
-       }
+     "somePlugin": {
+       "apiKey": "{env:API_KEY}",
+       "accessToken": "${ACCESS_TOKEN}"
      }
    }
    ```
