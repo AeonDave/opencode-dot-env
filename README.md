@@ -85,7 +85,7 @@ Run from a local checkout — useful before publishing or while hacking on the p
    On Windows, use forward slashes and include the drive letter, for example:
 
    ```ts
-   export { default } from "D:/Sources/opencode-dot-env/src/plugin/dotenv.ts"
+   export { default } from "C:/path/to/opencode-dot-env/src/plugin/dotenv.ts"
    ```
 
 3. Restart OpenCode. The plugin loads from your working tree, so edits to `src/` take effect on the next restart. Delete the shim file to uninstall.
