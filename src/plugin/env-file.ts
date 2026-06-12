@@ -96,13 +96,21 @@ function unquote(value: string): string {
 	const last = value[value.length - 1]
 
 	if (first === '"' && last === '"') {
-		return value
-			.slice(1, -1)
-			.replace(/\\n/g, "\n")
-			.replace(/\\r/g, "\r")
-			.replace(/\\t/g, "\t")
-			.replace(/\\"/g, '"')
-			.replace(/\\\\/g, "\\")
+		// Single left-to-right pass so an escaped backslash (\\) consumes the
+		// following character correctly: "a\\nb" yields a literal `a\nb`, not a
+		// newline. A trailing lone backslash is left as-is.
+		return value.slice(1, -1).replace(/\\([nrt"\\])/g, (_, ch: string) => {
+			switch (ch) {
+				case "n":
+					return "\n"
+				case "r":
+					return "\r"
+				case "t":
+					return "\t"
+				default:
+					return ch // " or \
+			}
+		})
 	}
 	if (first === "'" && last === "'") {
 		return value.slice(1, -1)
