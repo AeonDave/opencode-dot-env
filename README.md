@@ -73,9 +73,9 @@ Run from a local checkout — useful before publishing or while hacking on the p
    npm install
    ```
 
-2. Create a shim file in your global plugin directory that re-exports the checkout's entry point. The directory is `plugin` (singular):
+2. Create a shim file in your global plugin directory that re-exports the checkout's entry point. The plugin directory is `plugins` (plural):
 
-   - Path: `~/.config/opencode/plugin/dotenv.ts`
+   - Path: `~/.config/opencode/plugins/dotenv.ts`
    - Content — a single line pointing at the absolute path of the cloned entry point:
 
    ```ts
@@ -91,6 +91,8 @@ Run from a local checkout — useful before publishing or while hacking on the p
 3. Restart OpenCode. The plugin loads from your working tree, so edits to `src/` take effect on the next restart. Delete the shim file to uninstall.
 
 > Use one method at a time. If you add the npm entry, remove the local shim (and vice versa) so the plugin is not loaded twice.
+
+> **Directory name:** current OpenCode scans `plugins` (plural) — `~/.config/opencode/plugins/` and `.opencode/plugins/`. Some older builds used the singular `plugin/`. If the shim doesn't load, check your version (`opencode --version`) and try the other spelling.
 
 ## Usage
 
